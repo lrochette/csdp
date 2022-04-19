@@ -6,7 +6,8 @@ metadata:
   namespace: csdp
 spec:
   rules:
-  - http:
+  - host: kim.hybrid-team.cf-cd.com
+    http:
       paths:
       - backend:
           service:
