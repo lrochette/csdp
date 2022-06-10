@@ -3,7 +3,7 @@
   "userGivenName": "matthew-hub",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "workflows/slack",
+  "srcPath": "workflows/jira",
   "srcRepoURL": "https://github.com/matthewchungcodefresh/argo-hub.git",
   "srcTargetRevision": "main",
   "labels": {
