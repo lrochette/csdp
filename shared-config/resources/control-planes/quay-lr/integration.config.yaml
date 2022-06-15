@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quay-lr
+  labels:
+    codefresh.io/entity: integration-config
+    codefresh.io/integration-type: registry.quay
+data:
+  domain: quay.io
+  username: lrochette
