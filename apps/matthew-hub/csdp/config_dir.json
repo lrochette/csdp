@@ -3,7 +3,7 @@
   "userGivenName": "matthew-hub",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "workflows/jira",
+  "srcPath": "workflows",
   "srcRepoURL": "https://github.com/matthewchungcodefresh/argo-hub.git",
   "srcTargetRevision": "main",
   "labels": {
@@ -11,5 +11,5 @@
     "codefresh_io_internal": "false"
   },
   "exclude": "",
-  "include": ""
+  "include": "{jira/**/*.yaml, sonar/**/*.yaml}"
 }
