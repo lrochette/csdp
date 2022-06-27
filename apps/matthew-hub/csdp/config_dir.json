@@ -11,5 +11,5 @@
     "codefresh_io_internal": "false"
   },
   "exclude": "",
-  "include": "{jira/**/*.yaml,sonar/**/*.yaml}"
+  "include": "{sonar/**/*.yaml}"
 }
