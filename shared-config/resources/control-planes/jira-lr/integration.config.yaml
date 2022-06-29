@@ -7,4 +7,4 @@ metadata:
     codefresh.io/integration-type: issue.jira
 data:
   email: laurent.rochette@codefresh.io
-  host_url: 'codefresh-io.atlassian.net'
+  host_url: 'https://codefresh-io.atlassian.net'
