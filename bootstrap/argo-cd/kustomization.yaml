@@ -12,18 +12,12 @@ configMapGenerator:
         name: autopilot-secret
   - timeout.reconciliation='30s'
   name: argocd-cm
-
-#
-# Not required, just an example of how to change log-level
-# full default values at
-#   https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/argocd-cmd-params-cm.yaml
-- name: argocd-cmd-params-cm
-  behavior: merge
+- behavior: merge
   literals:
   - reposerver.log.level=info
   - server.log.level=info
   - controller.log.level=info
-  
+  name: argocd-cmd-params-cm
 kind: Kustomization
 namespace: csdp
 patches:
@@ -38,4 +32,4 @@ patches:
           annotations:
             argocd-cm-hash: "87d144537ccdf42ceffacf8cafb9e940916c8556392542277a092ba30b76ae09"
 resources:
-- github.com/codefresh-io/cli-v2/manifests/argo-cd?ref=v0.0.438
+- github.com/codefresh-io/cli-v2/manifests/argo-cd?ref=v0.0.442
