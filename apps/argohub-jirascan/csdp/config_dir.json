@@ -1,0 +1,16 @@
+{
+  "appName": "argohub-jirascan",
+  "userGivenName": "argohub-jirascan",
+  "destNamespace": "csdp",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "./examples/jira-scan-workflow",
+  "srcRepoURL": "https://github.com/lrochette/argo-hub.git",
+  "srcTargetRevision": "mc-jira-scan-workflow",
+  "labels": {
+    "codefresh_io_entity": "git-source",
+    "codefresh_io_internal": "false"
+  },
+  "annotations": null,
+  "exclude": "",
+  "include": "**/*.yaml"
+}
