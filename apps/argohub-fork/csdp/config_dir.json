@@ -3,9 +3,9 @@
   "userGivenName": "argohub-fork",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "./workflows/image-test-workflow",
+  "srcPath": "./examples/image-test-workflow",
   "srcRepoURL": "https://github.com/lrochette/argo-hub.git",
-  "srcTargetRevision": "mc-workflow-template-test-image",
+  "srcTargetRevision": "mc-image-test-workflow",
   "labels": {
     "codefresh_io_entity": "git-source",
     "codefresh_io_internal": "false"
