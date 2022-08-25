@@ -12,7 +12,7 @@ spec:
   clusterResourceWhitelist:
   - group: '*'
     kind: '*'
-  description: dev project to simukate dev environment
+  description: dev project to simulate dev environment
   destinations:
   - namespace: '*'
     server: '*'
