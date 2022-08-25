@@ -10,7 +10,7 @@ configMapGenerator:
       usernameSecret:
         key: git_username
         name: autopilot-secret
-  - timeout.reconciliation='900s'
+  - timeout.reconciliation='1h'
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
