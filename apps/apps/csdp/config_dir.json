@@ -1,0 +1,16 @@
+{
+  "appName": "apps",
+  "userGivenName": "apps",
+  "destNamespace": "csdp",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "apps",
+  "srcRepoURL": "https://github.com/lrochette/csdp_applications.git",
+  "srcTargetRevision": "",
+  "labels": {
+    "codefresh_io_entity": "git-source",
+    "codefresh_io_internal": "false"
+  },
+  "annotations": null,
+  "exclude": "",
+  "include": ""
+}
