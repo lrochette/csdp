@@ -1,0 +1,16 @@
+{
+  "appName": "datree-mc",
+  "userGivenName": "datree-mc",
+  "destNamespace": "csdp",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "workflows/datree/versions/0.0.1",
+  "srcRepoURL": "https://github.com/codefresh-io/argo-hub.git",
+  "srcTargetRevision": "mc-datree",
+  "labels": {
+    "codefresh_io_entity": "git-source",
+    "codefresh_io_internal": "false"
+  },
+  "annotations": null,
+  "exclude": "",
+  "include": "*.yaml"
+}
