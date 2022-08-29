@@ -1,11 +1,11 @@
 {
-  "appName": "datree-mc",
-  "userGivenName": "datree-mc",
+  "appName": "argohub",
+  "userGivenName": "argohub",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "workflows/datree/versions/0.0.1",
+  "srcPath": "workflows/codecov/versions/0.0.1",
   "srcRepoURL": "https://github.com/codefresh-io/argo-hub.git",
-  "srcTargetRevision": "mc-datree",
+  "srcTargetRevision": "mc-codecov",
   "labels": {
     "codefresh_io_entity": "git-source",
     "codefresh_io_internal": "false"
