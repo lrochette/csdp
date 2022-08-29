@@ -14,5 +14,5 @@
     "argocd_argoproj_io_sync-wave": "0"
   },
   "exclude": "",
-  "include": "**/*.yaml"
+  "include": "{*.yaml,**/*.yaml}"
 }
