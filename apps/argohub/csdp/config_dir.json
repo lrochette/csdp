@@ -11,6 +11,6 @@
     "codefresh_io_internal": "false"
   },
   "annotations": null,
-  "exclude": "*.yaml",
-  "include": ""
+  "exclude": "",
+  "include": "*.yaml"
 }
