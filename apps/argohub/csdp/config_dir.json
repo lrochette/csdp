@@ -3,9 +3,9 @@
   "userGivenName": "argohub",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "workflows/codecov/versions/0.0.1",
+  "srcPath": "workflows/aqua/versions/0.0.1",
   "srcRepoURL": "https://github.com/codefresh-io/argo-hub.git",
-  "srcTargetRevision": "mc-codecov",
+  "srcTargetRevision": "mc-aqua",
   "labels": {
     "codefresh_io_entity": "git-source",
     "codefresh_io_internal": "false"
