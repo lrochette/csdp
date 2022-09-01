@@ -5,7 +5,7 @@
   "destServer": "https://kubernetes.default.svc",
   "srcPath": "examples/image-test-daemon-container/versions/0.0.1",
   "srcRepoURL": "https://github.com/codefresh-io/argo-hub.git",
-  "srcTargetRevision": "mc-image-test-workflow",
+  "srcTargetRevision": "lr-daemon-container",
   "labels": {
     "codefresh_io_entity": "git-source",
     "codefresh_io_internal": "false"
