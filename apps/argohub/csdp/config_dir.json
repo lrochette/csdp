@@ -3,7 +3,7 @@
   "userGivenName": "argohub",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "examples/image-test-workflow/versions/0.0.1",
+  "srcPath": "examples/image-test-daemon-container/versions/0.0.1",
   "srcRepoURL": "https://github.com/codefresh-io/argo-hub.git",
   "srcTargetRevision": "mc-image-test-workflow",
   "labels": {
