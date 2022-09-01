@@ -3,9 +3,9 @@
   "userGivenName": "argohub",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "workflows/heroku/versions/0.0.1",
+  "srcPath": "examples/jira-sonar/versions/0.0.1",
   "srcRepoURL": "https://github.com/codefresh-io/argo-hub.git",
-  "srcTargetRevision": "mc-heroku",
+  "srcTargetRevision": "mc-workflow-template",
   "labels": {
     "codefresh_io_entity": "git-source",
     "codefresh_io_internal": "false"
