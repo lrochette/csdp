@@ -9,46 +9,33 @@ data:
       name: csdp
       namespace: csdp
     spec:
+      accessMode: ""
       bootstrapSpecifier: github.com/codefresh-io/cli-v2/manifests/argo-cd
       cluster: https://A7F0B51A0AA159E93D55D2A438A7052D.gr7.us-east-1.eks.amazonaws.com
       components:
-      - isInternal: false
-        name: events
-        syncWave: 0
+      - name: events
         type: kustomize
-        url: github.com/codefresh-io/cli-v2/manifests/argo-events?ref=v0.0.492
+        url: github.com/codefresh-io/cli-v2/manifests/argo-events?ref=v0.0.524
         wait: true
-      - isInternal: false
-        name: rollouts
-        syncWave: 0
+      - name: rollouts
         type: kustomize
-        url: github.com/codefresh-io/cli-v2/manifests/argo-rollouts?ref=v0.0.492
-        wait: false
-      - isInternal: false
-        name: workflows
-        syncWave: 0
+        url: github.com/codefresh-io/cli-v2/manifests/argo-rollouts?ref=v0.0.524
+      - name: workflows
         type: kustomize
-        url: github.com/codefresh-io/cli-v2/manifests/argo-workflows?ref=v0.0.492
-        wait: false
-      - isInternal: false
-        name: app-proxy
+        url: github.com/codefresh-io/cli-v2/manifests/argo-workflows?ref=v0.0.524
+      - name: app-proxy
         syncWave: 9
         type: kustomize
-        url: github.com/codefresh-io/cli-v2/manifests/app-proxy?ref=v0.0.492
-        wait: false
-      - isInternal: false
-        name: sealed-secrets
-        syncWave: 0
+        url: github.com/codefresh-io/cli-v2/manifests/app-proxy?ref=v0.0.524
+      - name: sealed-secrets
         type: kustomize
-        url: github.com/codefresh-io/cli-v2/manifests/sealed-secrets?ref=v0.0.492
-        wait: false
-      defVersion: 1.0.1
+        url: github.com/codefresh-io/cli-v2/manifests/sealed-secrets?ref=v0.0.524
+      defVersion: 2.0.0
       ingressClassName: nginx
       ingressController: k8s.io/ingress-nginx
       ingressHost: https://lrcsdp.support.cf-cd.com
-      internalIngressHost: ""
       repo: https://github.com/lrochette/csdp
-      version: 0.0.492
+      version: 0.0.524
 kind: ConfigMap
 metadata:
   creationTimestamp: null
