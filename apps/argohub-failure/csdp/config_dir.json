@@ -4,7 +4,7 @@
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
   "srcPath": "examples/failure-notification/versions/0.0.1",
-  "srcRepoURL": "https://github.com/xplriorargo-hub.git",
+  "srcRepoURL": "https://github.com/xplrior/argo-hub.git",
   "srcTargetRevision": "main",
   "labels": {
     "codefresh_io_entity": "git-source",
