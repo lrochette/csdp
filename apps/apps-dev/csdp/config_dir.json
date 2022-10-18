@@ -1,9 +1,9 @@
 {
   "appName": "applications",
-  "userGivenName": "apps",
+  "userGivenName": "apps-dev",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "apps",
+  "srcPath": "apps/dev",
   "srcRepoURL": "https://github.com/lrochette/csdp_applications.git",
   "srcTargetRevision": "main",
   "labels": {
@@ -12,5 +12,5 @@
   },
   "annotations": null,
   "exclude": "",
-  "include": "*.yaml"
+  "include": ""
 }
