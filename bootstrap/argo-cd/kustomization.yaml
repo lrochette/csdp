@@ -12,7 +12,6 @@ configMapGenerator:
         name: autopilot-secret
   - timeout.reconciliation='30s'
   name: argocd-cm
-
 - behavior: merge
   literals:
   - |
@@ -29,8 +28,7 @@ configMapGenerator:
             helmfile -e "$ENVIRONMENT" template --args "--include-crds --namespace $ARGOCD_APP_NAMESPACE"
       allowConcurrency: false
       lockRepo: true
-
 kind: Kustomization
 namespace: csdp
 resources:
-- github.com/codefresh-io/cli-v2.git/manifests/argo-cd?ref=v0.0.567
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.3

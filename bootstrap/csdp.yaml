@@ -10,36 +10,37 @@ data:
       namespace: csdp
     spec:
       accessMode: ""
-      bootstrapSpecifier: github.com/codefresh-io/cli-v2.git/manifests/argo-cd
+      bootstrapSpecifier: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd
       cluster: https://A7F0B51A0AA159E93D55D2A438A7052D.gr7.us-east-1.eks.amazonaws.com
       components:
       - name: events
         type: kustomize
-        url: github.com/codefresh-io/cli-v2.git/manifests/argo-events?ref=v0.0.567
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-events?ref=0.1.3
         wait: true
       - name: rollouts
         type: kustomize
-        url: github.com/codefresh-io/cli-v2.git/manifests/argo-rollouts?ref=v0.0.567
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-rollouts?ref=0.1.3
       - name: workflows
         type: kustomize
-        url: github.com/codefresh-io/cli-v2.git/manifests/argo-workflows?ref=v0.0.567
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-workflows?ref=0.1.3
       - name: app-proxy
         syncWave: 9
         type: kustomize
-        url: github.com/codefresh-io/cli-v2.git/manifests/app-proxy?ref=v0.0.567
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/app-proxy?ref=0.1.3
       - name: internal-router
         syncWave: 10
         type: kustomize
-        url: github.com/codefresh-io/cli-v2.git/manifests/internal-router?ref=v0.0.567
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/internal-router?ref=0.1.3
       - name: sealed-secrets
         type: kustomize
-        url: github.com/codefresh-io/cli-v2.git/manifests/sealed-secrets?ref=v0.0.567
-      defVersion: 2.1.1
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/sealed-secrets?ref=0.1.3
+      defVersion: null
       ingressClassName: nginx
       ingressController: k8s.io/ingress-nginx
       ingressHost: https://lrcsdp.support.cf-cd.com
       repo: https://github.com/lrochette/csdp
-      version: 0.0.567
+      requiredCLIVersion: ^0.1.0
+      version: 0.1.3
 kind: ConfigMap
 metadata:
   creationTimestamp: null
