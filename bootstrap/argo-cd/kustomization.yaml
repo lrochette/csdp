@@ -16,3 +16,20 @@ kind: Kustomization
 namespace: csdp
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.5
+
+# - behavior: merge
+#   literals:
+#   - |
+#     configManagementPlugins=
+#     - name: helmfile
+#       generate:
+#         command:
+#           - sh
+#           - -c
+#           - -e
+#           - |
+#             $(HOME=/tmp aws sts assume-role --role-arn arn:aws:iam::835357571861:role/inc03-argocd-repo-server-sa --role-session-name argocd |\
+#             jq -r '.Credentials | "export AWS_ACCESS_KEY_ID=\(.AccessKeyId)\nexport AWS_SECRET_ACCESS_KEY=\(.SecretAccessKey)\nexport AWS_SESSION_TOKEN=\(.SessionToken)"')
+#             helmfile -e "$ENVIRONMENT" template --args "--include-crds --namespace $ARGOCD_APP_NAMESPACE"
+#       allowConcurrency: false
+#       lockRepo: true
