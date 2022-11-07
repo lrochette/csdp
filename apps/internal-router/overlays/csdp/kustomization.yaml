@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: csdp
 resources:
 - ../../base
+- ingress.yaml
