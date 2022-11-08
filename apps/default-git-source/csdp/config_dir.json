@@ -3,9 +3,9 @@
   "userGivenName": "default-git-source",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "resources_csdp",
+  "srcPath": ".",
   "srcRepoURL": "https://github.com/lrochette/csdp_git-source.git",
-  "srcTargetRevision": "",
+  "srcTargetRevision": "main",
   "labels": {
     "codefresh_io_entity": "git-source",
     "codefresh_io_internal": "false"
@@ -14,5 +14,5 @@
     "argocd_argoproj_io_sync-wave": "0"
   },
   "exclude": "",
-  "include": ""
+  "include": "{*.yaml,**/*.yaml}"
 }
