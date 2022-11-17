@@ -11,7 +11,19 @@ configMapGenerator:
         key: git_username
         name: autopilot-secret
   name: argocd-cm
+
+
 kind: Kustomization
 namespace: csdp
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.13
+
+patches:
+  - target:
+      name: argocd-cm
+      kind: ConfigMap
+      version: v1
+    patch: |-
+      - op: add
+        path: /data/kustomize.buildOptions
+        value: --enable-helm  
