@@ -11,3 +11,14 @@ kind: Kustomization
 namespace: csdp
 resources:
 - ../../base
+
+# For Helmfile support?
+patches:
+  - target:
+      name: argocd-cm
+      kind: ConfigMap
+      version: v1
+    patch: |-
+      - op: add
+        path: /data/kustomize.buildOptions
+        value: --enable-helm
