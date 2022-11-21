@@ -20,7 +20,8 @@ configMapGenerator:
       generate:
         command: ["/bin/sh", "-c"]
         args: ["helmfile --namespace csdp template | sed -e '1,/---/d' | sed -e 's|apiregistration.k8s.io/v1beta1|apiregistration.k8s.io/v1|g'"]
-
+  name: argocd-cm
+  
 kind: Kustomization
 namespace: csdp
 resources:
