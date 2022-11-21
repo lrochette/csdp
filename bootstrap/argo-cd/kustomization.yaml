@@ -12,6 +12,14 @@ configMapGenerator:
         name: autopilot-secret
   name: argocd-cm
 
+- behavior: merge
+  literals:
+  - |
+    configManagementPlugins=
+    - name: helmfile
+      generate:
+        command: ["/bin/sh", "-c"]
+        args: ["helmfile --namespace csdp template | sed -e '1,/---/d' | sed -e 's|apiregistration.k8s.io/v1beta1|apiregistration.k8s.io/v1|g'"]
 
 kind: Kustomization
 namespace: csdp
@@ -26,4 +34,4 @@ patches:
     patch: |-
       - op: add
         path: /data/kustomize.buildOptions
-        value: --enable-helm  
+        value: --enable-helm
