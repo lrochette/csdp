@@ -11,7 +11,6 @@ configMapGenerator:
         key: git_username
         name: autopilot-secret
   name: argocd-cm
-
 - behavior: merge
   literals:
   - |
@@ -27,20 +26,7 @@ configMapGenerator:
       allowConcurrency: false
       lockRepo: true
   name: argocd-cm
-            # $(HOME=/tmp aws sts assume-role --role-arn arn:aws:iam::839151377425:role/inc03-argocd-repo-server-sa --role-session-name argocd |\
-            # jq -r '.Credentials | "export AWS_ACCESS_KEY_ID=\(.AccessKeyId)\nexport AWS_SECRET_ACCESS_KEY=\(.SecretAccessKey)\nexport AWS_SESSION_TOKEN=\(.SessionToken)"')
-  
 kind: Kustomization
 namespace: csdp
 resources:
-- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.13
-
-# patches:
-#   - target:
-#       name: argocd-cm
-#       kind: ConfigMap
-#       version: v1
-#     patch: |-
-#       - op: add
-#         path: /data/kustomize.buildOptions
-#         value: --enable-helm
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.14
