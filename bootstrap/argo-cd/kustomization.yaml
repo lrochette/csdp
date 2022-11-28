@@ -1,10 +1,4 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
-- path: route-patch.json
-  target:
-    group: apps
-    kind: Deployment
-    name: argocd-server
-    version: v1
 configMapGenerator:
 - behavior: merge
   literals:
