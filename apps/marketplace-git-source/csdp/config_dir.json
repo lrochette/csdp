@@ -14,5 +14,5 @@
     "argocd_argoproj_io_sync-wave": "0"
   },
   "exclude": "**/images/**/*",
-  "include": "workflows/**/*.yaml"
+  "include": "workflows/**/*.yaml,examples/**/*.yaml"
 }
