@@ -5,7 +5,7 @@
   "destServer": "https://kubernetes.default.svc",
   "srcPath": ".",
   "srcRepoURL": "https://github.com/codefresh-io/argo-hub.git",
-  "srcTargetRevision": "",
+  "srcTargetRevision": "FT-139",
   "labels": {
     "codefresh_io_entity": "git-source",
     "codefresh_io_internal": "true"
