@@ -48,7 +48,7 @@ patchesStrategicMerge:
         initContainers:
         - name: download-tools
           image: alpine:3.8
-          command: [sh!, -c]
+          command: [sh, -c]
           args:
             - wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh &&
               chmod +x /custom-tools/argo-cd-helmfile.sh &&
