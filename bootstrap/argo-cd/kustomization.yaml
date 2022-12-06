@@ -11,6 +11,11 @@ configMapGenerator:
         key: git_username
         name: autopilot-secret
   name: argocd-cm
+kind: Kustomization
+namespace: csdp
+resources:
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.16
+
 # - behavior: merge
 #   literals:
 #   - |
@@ -23,8 +28,7 @@ configMapGenerator:
 #           command: ["argo-cd-helmfile.sh"]
 #           args: ["generate"]
 #   name: argocd-cm
-kind: Kustomization
-namespace: csdp
+
 # patchesStrategicMerge:
 # - |-
 #   apiVersion: apps/v1
@@ -66,5 +70,3 @@ namespace: csdp
 #         # - mountPath: /usr/local/bin/helmfile
 #         #   name: custom-tools
 #         #   subPath: helmfile
-resources:
-- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.16
