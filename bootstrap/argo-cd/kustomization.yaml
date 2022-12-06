@@ -32,6 +32,14 @@ patchesStrategicMerge:
   spec:
     template:
       spec:
+        containers:
+        - name: argo-cd-server
+          volumeMounts:
+          - mountPath: /usr/local/bin/argo-cd-helmfile.sh
+            name: custom-tools
+            subPath: argo-cd-helmfile.sh
+          - mountPath: /usr/local/bin/helmfile
+            name: custom-tools
         volumes:
         - name: custom-tools
           emptyDir: {}
@@ -48,12 +56,7 @@ patchesStrategicMerge:
           volumeMounts:
             - mountPath: /custom-tools
               name: custom-tools
-        volumeMounts:
-        - mountPath: /usr/local/bin/argo-cd-helmfile.sh
-          name: custom-tools
-          subPath: argo-cd-helmfile.sh
-        - mountPath: /usr/local/bin/helmfile
-          name: custom-tools
+
           subPath: helmfile
 kind: Kustomization
 namespace: csdp
