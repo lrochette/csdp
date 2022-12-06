@@ -12,12 +12,12 @@ configMapGenerator:
         name: autopilot-secret
   - |
     configManagementPlugins=- name: helmfile
-        init:                          # Optional command to initialize application source directory
-          command: ["argo-cd-helmfile.sh"]
-          args: ["init"]
-        generate:                      # Command to generate manifests YAML
-          command: ["argo-cd-helmfile.sh"]
-          args: ["generate"]
+      init:
+        command: ["argo-cd-helmfile.sh"]
+        args: ["init"]
+      generate:
+        command: ["argo-cd-helmfile.sh"]
+        args: ["generate"]
   name: argocd-cm
 patchesStrategicMerge:
 - |-
