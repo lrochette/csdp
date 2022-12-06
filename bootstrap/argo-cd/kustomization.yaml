@@ -32,15 +32,6 @@ patchesStrategicMerge:
   spec:
     template:
       spec:
-        containers:
-        - name: argocd-repo-server
-          env:
-          - name: HELM_DATA_HOME
-            value: /helm/data
-          volumeMounts:
-          - mountPath: /home/argocd/.local/share/helm
-            name: helm-data-home
-
         volumes:
         - name: custom-tools
           emptyDir: {}
