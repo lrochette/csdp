@@ -59,12 +59,12 @@ patchesStrategicMerge:
           # volumeMounts:
           #   - mountPath: /custom-tools
           #     name: custom-tools
-        volumeMounts:
-        - mountPath: /usr/local/bin/argo-cd-helmfile.sh
-          name: custom-tools
-          subPath: argo-cd-helmfile.sh
-        - mountPath: /usr/local/bin/helmfile
-          name: custom-tools
-          subPath: helmfile
+        # volumeMounts:
+        # - mountPath: /usr/local/bin/argo-cd-helmfile.sh
+        #   name: custom-tools
+        #   subPath: argo-cd-helmfile.sh
+        # - mountPath: /usr/local/bin/helmfile
+        #   name: custom-tools
+        #   subPath: helmfile
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.16
