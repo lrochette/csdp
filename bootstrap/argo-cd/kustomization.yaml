@@ -67,4 +67,4 @@ patchesStrategicMerge:
           name: custom-tools
           subPath: helmfile
 resources:
-- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.15
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.16
