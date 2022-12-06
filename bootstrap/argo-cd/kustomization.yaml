@@ -54,9 +54,9 @@ patchesStrategicMerge:
               chmod +x /custom-tools/argo-cd-helmfile.sh &&
               wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64 &&
               chmod +x /custom-tools/helmfile
-          volumeMounts:
-            - mountPath: /custom-tools
-              name: custom-tools
+          # volumeMounts:
+          #   - mountPath: /custom-tools
+          #     name: custom-tools
         volumeMounts:
         - mountPath: /usr/local/bin/argo-cd-helmfile.sh
           name: custom-tools
