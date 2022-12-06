@@ -11,8 +11,7 @@ configMapGenerator:
         key: git_username
         name: autopilot-secret
   - |
-    configManagementPlugins=
-    - name: helmfile
+    configManagementPlugins=- name: helmfile
         init:                          # Optional command to initialize application source directory
           command: ["argo-cd-helmfile.sh"]
           args: ["init"]
