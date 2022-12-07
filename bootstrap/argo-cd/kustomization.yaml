@@ -36,10 +36,10 @@ patchesStrategicMerge:
             subPath: argo-cd-helmfile.sh
           - mountPath: /usr/local/bin/helmfile
             name: custom-tools
+            subPath: helmfile
         volumes:
         - name: custom-tools
           emptyDir: {}
-
         initContainers:
         - name: download-tools
           image: alpine:3.8
@@ -52,7 +52,7 @@ patchesStrategicMerge:
           volumeMounts:
             - mountPath: /custom-tools
               name: custom-tools
-          subPath: helmfile
+
 kind: Kustomization
 namespace: csdp
 resources:
