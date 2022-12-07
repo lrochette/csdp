@@ -29,7 +29,7 @@ patchesStrategicMerge:
     template:
       spec:
         containers:
-        - name: argo-cd-server
+        - name: argocd-repo-server
           volumeMounts:
           - mountPath: /usr/local/bin/argo-cd-helmfile.sh
             name: custom-tools
