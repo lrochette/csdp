@@ -37,8 +37,12 @@ patchesStrategicMerge:
           - mountPath: /usr/local/bin/helmfile
             name: custom-tools
             subPath: helmfile
+          - mountPath: /home/argocd/.local/share/helm
+            name: helm-data-home
         volumes:
         - name: custom-tools
+          emptyDir: {}
+        - name: helm-data-home
           emptyDir: {}
         initContainers:
         - name: download-tools
@@ -52,7 +56,8 @@ patchesStrategicMerge:
           volumeMounts:
             - mountPath: /custom-tools
               name: custom-tools
-
+            - mountPath: /helm/data
+              name: helm-data-home
 kind: Kustomization
 namespace: csdp
 resources:
