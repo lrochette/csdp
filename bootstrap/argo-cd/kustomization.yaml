@@ -19,6 +19,8 @@ configMapGenerator:
         command: [sh, -c]
         args: ["/usr/local/bin/argo-cd-helmfile.sh generate"]
   name: argocd-cm
+kind: Kustomization
+namespace: csdp
 patchesStrategicMerge:
 - |-
   apiVersion: apps/v1
@@ -58,7 +60,5 @@ patchesStrategicMerge:
               name: custom-tools
             - mountPath: /helm/data
               name: helm-data-home
-kind: Kustomization
-namespace: csdp
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.16
