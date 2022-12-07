@@ -13,11 +13,11 @@ configMapGenerator:
   - |
     configManagementPlugins=- name: helmfile
       init:
-        command: ["argo-cd-helmfile.sh"]
-        args: ["init"]
+        command: [sh, -c]
+        args: ["/custom-tools/argo-cd-helmfile.sh init"]
       generate:
-        command: ["argo-cd-helmfile.sh"]
-        args: ["generate"]
+        command: [sh, -c]
+        args: ["/custom-tools/argo-cd-helmfile.sh generate"]
   name: argocd-cm
 patchesStrategicMerge:
 - |-
