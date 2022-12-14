@@ -10,12 +10,6 @@ configMapGenerator:
       usernameSecret:
         key: git_username
         name: autopilot-secret
-  - helm.valuesFileSchemes=secrets+gpg-import,secrets+gpg-import-kubernetes,secrets+age-import,secrets+age-import-kubernetes,secrets,http,https
-  - |
-    configManagementPlugins=- name: kontemplate
-      generate:
-        command: [sh, -c]
-        args: ["/custom-tools/kontemplate template ../$ENVIRONMENT"]
   - |
     configManagementPlugins=- name: helmfile
       init:
@@ -66,62 +60,5 @@ patchesStrategicMerge:
               name: custom-tools
             - mountPath: /helm/data
               name: helm-data-home
-- |-
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: argocd-repo-server
-  spec:
-    template:
-      spec:
-        containers:
-        - name: argocd-repo-server
-          env:
-          - name: HELM_PLUGINS
-            value: /custom-tools/helm-plugins/
-          # In case wrapper scripts are used, HELM_SECRETS_HELM_PATH needs to be the path of the real helm binary
-          - name: HELM_SECRETS_HELM_PATH
-            value: /usr/local/bin/helm
-          - name: HELM_SECRETS_SOPS_PATH
-            value: /custom-tools/sops
-          - name: HELM_SECRETS_KUBECTL_PATH
-            value: /custom-tools/kubectl
-          # https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments
-          - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
-            value: "false"
-          - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
-            value: "false"
-          - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
-            value: "false"
-          volumeMounts:
-          - mountPath: /custom-tools
-            name: custom-tools
-        initContainers:
-        - name: download-tools
-          image: alpine:3.15
-          command: [sh, -ec]
-          env:
-          - name: HELM_SECRETS_VERSION
-            value: "3.12.0"
-          - name: SOPS_VERSION
-            value: "3.7.1"
-          - name: KUBECTL_VERSION
-            value: "1.22.0"
-          - name: KONTEMPLATE_RELEASE
-            value: "https://github.com/tazjin/kontemplate/releases/download/v1.8.0/kontemplate-1.8.0-6c3b299-linux-amd64.tar.gz"
-          args:
-          - |
-            mkdir -p /custom-tools/helm-plugins
-            wget -qO- https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-;
-            wget -qO /custom-tools/sops https://github.com/mozilla/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux
-            wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
-            wget -qO- "${KONTEMPLATE_RELEASE}" | tar -C /custom-tools -xzf-;
-            chmod +x /custom-tools/*
-          volumeMounts:
-          - mountPath: /custom-tools
-            name: custom-tools
-        volumes:
-        - name: custom-tools
-          emptyDir: {}
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.16
