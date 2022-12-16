@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 configMapGenerator:
 - behavior: merge
   literals:
+  - kustomize.buildOptions=--enable-helm
+  - helm.valuesFileSchemes=secrets+gpg-import,secrets+gpg-import-kubernetes,secrets+age-import,secrets+age-import-kubernetes,secrets,http,https
   - |
     repository.credentials=- passwordSecret:
         key: git_token
