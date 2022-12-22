@@ -82,4 +82,4 @@ patchesStrategicMerge:
             - mountPath: /helm/data
               name: helm-data-home
 resources:
-- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.16
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.17
