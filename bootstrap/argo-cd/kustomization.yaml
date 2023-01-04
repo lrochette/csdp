@@ -19,7 +19,7 @@ configMapGenerator:
         args: ["/usr/local/bin/argo-cd-helmfile.sh init"]
       generate:
         command: [sh, -c]
-        args: ["/usr/local/bin/kontemplate template ../$ENVIRONMENT",
+        args: ["/usr/local/bin/kontemplate template /home/argocd/.local/share/helm",
                "/usr/local/bin/argo-cd-helmfile.sh generate"
                ]
                
@@ -72,6 +72,8 @@ patchesStrategicMerge:
             subPath: kontemplate                       
           - mountPath: /home/argocd/.local/share/helm
             name: helm-data-home
+          - mountPath: /custom-tools
+            name: custom-tools
         volumes:
         - name: custom-tools
           emptyDir: {}
