@@ -19,7 +19,9 @@ configMapGenerator:
         args: ["/usr/local/bin/argo-cd-helmfile.sh init"]
       generate:
         command: [sh, -c]
-        args: ["/usr/local/bin/argo-cd-helmfile.sh generate"]
+        args: ["/usr/local/bin/argo-cd-helmfile.sh generate",
+               "/custom-tools/kontemplate template ../$ENVIRONMENT"
+               ]
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
