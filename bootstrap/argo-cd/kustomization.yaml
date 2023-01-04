@@ -21,7 +21,7 @@ configMapGenerator:
         command: [sh, -c]
         args: 
             - |
-              /usr/local/bin/argo-cd-helmfile.sh generate"
+              /usr/local/bin/argo-cd-helmfile.sh generate
                
   name: argocd-cm
 kind: Kustomization
