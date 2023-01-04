@@ -19,7 +19,7 @@ configMapGenerator:
         args: ["/usr/local/bin/argo-cd-helmfile.sh init"]
       generate:
         command: [sh, -c]
-        args: ["/custom-tools/kontemplate template ../$ENVIRONMENT",
+        args: ["/usr/local/bin/kontemplate template ../$ENVIRONMENT",
                "/usr/local/bin/argo-cd-helmfile.sh generate"
                ]
                
@@ -44,9 +44,9 @@ patchesStrategicMerge:
           - name: HELM_SECRETS_HELM_PATH
             value: /usr/local/bin/helm
           - name: HELM_SECRETS_SOPS_PATH
-            value: /custom-tools/sops
+            value: /usr/local/bin/sops
           - name: HELM_SECRETS_KUBECTL_PATH
-            value: /custom-tools/kubectl
+            value: /usr/local/bin/kubectl
           # https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments
           - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
             value: "false"
