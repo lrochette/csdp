@@ -66,10 +66,7 @@ patchesStrategicMerge:
             subPath: sops
           - mountPath: /usr/local/bin/kubectl
             name: custom-tools
-            subPath: kubectl
-          - mountPath: /usr/local/bin/kontemplate
-            name: custom-tools
-            subPath: kontemplate                       
+            subPath: kubectl                 
           - mountPath: /home/argocd/.local/share/helm
             name: helm-data-home
           - mountPath: /custom-tools
@@ -90,8 +87,6 @@ patchesStrategicMerge:
             value: "3.7.3"
           - name: KUBECTL_VERSION
             value: "1.22.0"
-          - name: KONTEMPLATE_RELEASE
-            value: "https://github.com/tazjin/kontemplate/releases/download/v1.8.0/kontemplate-1.8.0-6c3b299-linux-amd64.tar.gz"
           args:
             - |
               # helmfile
@@ -104,7 +99,6 @@ patchesStrategicMerge:
               wget -qO- https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-;
               wget -qO /custom-tools/sops https://github.com/mozilla/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux
               wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
-              # wget -qO- "${KONTEMPLATE_RELEASE}" | tar -C /custom-tools -xzf-;
               chmod +x /custom-tools/*
 
           volumeMounts:
