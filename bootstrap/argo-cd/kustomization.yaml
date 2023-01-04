@@ -19,9 +19,10 @@ configMapGenerator:
         args: ["/usr/local/bin/argo-cd-helmfile.sh init"]
       generate:
         command: [sh, -c]
-        args: ["/usr/local/bin/kontemplate template /home/argocd/.local/share/helm",
-               "/usr/local/bin/argo-cd-helmfile.sh generate"
-               ]
+        args: 
+            - |
+              /usr/local/bin/kontemplate template /home/argocd/.local/share/helm
+              /usr/local/bin/argo-cd-helmfile.sh generate"
                
   name: argocd-cm
 kind: Kustomization
@@ -85,9 +86,9 @@ patchesStrategicMerge:
           command: [sh, -c]
           env:
           - name: HELM_SECRETS_VERSION
-            value: "3.12.0"
+            value: "4.2.0"
           - name: SOPS_VERSION
-            value: "3.7.1"
+            value: "3.7.3"
           - name: KUBECTL_VERSION
             value: "1.22.0"
           - name: KONTEMPLATE_RELEASE
