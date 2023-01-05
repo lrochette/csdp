@@ -10,97 +10,48 @@ configMapGenerator:
       usernameSecret:
         key: git_username
         name: autopilot-secret
-  - |
-    configManagementPlugins=- name: helmfile
-      init:
-        command: [sh, -c]
-        args: ["/usr/local/bin/argo-cd-helmfile.sh init"]
-      generate:
-        command: [sh, -c]
-        args: ["/usr/local/bin/argo-cd-helmfile.sh generate"]
-               
+  - "configManagementPlugins=- name: helmfile\n  init:\n    command: [sh, -c]\n    args:
+    [\"/usr/local/bin/argo-cd-helmfile.sh init\"]\n  generate:\n    command: [sh,
+    -c]\n    args: [\"/usr/local/bin/argo-cd-helmfile.sh generate\"]\n           \n"
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
 patchesStrategicMerge:
-- |-
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: argocd-repo-server
-  spec:
-    template:
-      spec:
-        containers:
-        - name: argocd-repo-server
-          env:
-          - name: HELM_PLUGINS
-            value: /custom-tools/helm-plugins/
-          # In case wrapper scripts are used, HELM_SECRETS_HELM_PATH needs to be the path of the real helm binary
-          - name: HELM_SECRETS_HELM_PATH
-            value: /usr/local/bin/helm
-          - name: HELM_SECRETS_SOPS_PATH
-            value: /usr/local/bin/sops
-          - name: HELM_SECRETS_KUBECTL_PATH
-            value: /usr/local/bin/kubectl
-          # https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments
-          - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
-            value: "false"
-          - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
-            value: "false"
-          - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
-            value: "false"
-          volumeMounts:
-          - mountPath: /usr/local/bin/argo-cd-helmfile.sh
-            name: custom-tools
-            subPath: argo-cd-helmfile.sh
-          - mountPath: /usr/local/bin/helmfile
-            name: custom-tools
-            subPath: helmfile                 
-          - mountPath: /home/argocd/.local/share/helm
-            name: helm-data-home
-          - mountPath: /usr/local/bin/sops
-            name: custom-tools
-            subPath: sops
-          - mountPath: /usr/local/bin/kubectl
-            name: custom-tools
-            subPath: kubectl  
-          - mountPath: /custom-tools
-            name: custom-tools         
-        volumes:
-        - name: custom-tools
-          emptyDir: {}
-        - name: helm-data-home
-          emptyDir: {}
-        initContainers:
-        - name: download-tools
-          image: alpine:3.8
-          env:
-          - name: HELM_SECRETS_VERSION
-            value: "4.2.0"
-          - name: SOPS_VERSION
-            value: "3.7.3"
-          - name: KUBECTL_VERSION
-            value: "1.22.0"
-          command: [sh, -c]
-          args:
-            - |
-              # helmfile
-              wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh
-              chmod +x /custom-tools/argo-cd-helmfile.sh
-              wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64
-              chmod +x /custom-tools/helmfile
-              # helm secrets
-              mkdir -p /custom-tools/helm-plugins
-              wget -qO- https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-;
-              wget -qO /custom-tools/sops https://github.com/mozilla/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux
-              wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl
-              chmod +x /custom-tools/*
-
-          volumeMounts:
-            - mountPath: /custom-tools
-              name: custom-tools
-            - mountPath: /helm/data
-              name: helm-data-home
+- "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: argocd-repo-server\nspec:\n
+  \ template:\n    spec:\n      containers:\n      - name: argocd-repo-server\n        env:\n
+  \       - name: HELM_PLUGINS\n          value: /custom-tools/helm-plugins/\n        #
+  In case wrapper scripts are used, HELM_SECRETS_HELM_PATH needs to be the path of
+  the real helm binary\n        - name: HELM_SECRETS_HELM_PATH\n          value: /usr/local/bin/helm\n
+  \       - name: HELM_SECRETS_SOPS_PATH\n          value: /usr/local/bin/sops\n        -
+  name: HELM_SECRETS_KUBECTL_PATH\n          value: /usr/local/bin/kubectl\n        #
+  https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments\n
+  \       - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS\n          value: \"false\"\n
+  \       - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH\n          value: \"false\"\n
+  \       - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL\n          value: \"false\"\n
+  \       volumeMounts:\n        - mountPath: /usr/local/bin/argo-cd-helmfile.sh\n
+  \         name: custom-tools\n          subPath: argo-cd-helmfile.sh\n        -
+  mountPath: /usr/local/bin/helmfile\n          name: custom-tools\n          subPath:
+  helmfile                 \n        - mountPath: /home/argocd/.local/share/helm\n
+  \         name: helm-data-home\n        - mountPath: /usr/local/bin/sops\n          name:
+  custom-tools\n          subPath: sops\n        - mountPath: /usr/local/bin/kubectl\n
+  \         name: custom-tools\n          subPath: kubectl  \n        - mountPath:
+  /custom-tools\n          name: custom-tools         \n      volumes:\n      - name:
+  custom-tools\n        emptyDir: {}\n      - name: helm-data-home\n        emptyDir:
+  {}\n      initContainers:\n      - name: download-tools\n        image: alpine:3.8\n
+  \       env:\n        - name: HELM_SECRETS_VERSION\n          value: \"4.2.0\"\n
+  \       - name: SOPS_VERSION\n          value: \"3.7.3\"\n        - name: KUBECTL_VERSION\n
+  \         value: \"1.22.0\"\n        command: [sh, -c]\n        args:\n          -
+  |\n            # helmfile\n            wget -qO /custom-tools/argo-cd-helmfile.sh
+  https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh\n
+  \           chmod +x /custom-tools/argo-cd-helmfile.sh\n            wget -qO /custom-tools/helmfile
+  https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64\n
+  \           chmod +x /custom-tools/helmfile\n            # helm secrets\n            mkdir
+  -p /custom-tools/helm-plugins\n            wget -qO- https://github.com/jkroepke/helm-secrets/releases/download/v${HELM_SECRETS_VERSION}/helm-secrets.tar.gz
+  | tar -C /custom-tools/helm-plugins -xzf-;\n            wget -qO /custom-tools/sops
+  https://github.com/mozilla/sops/releases/download/v${SOPS_VERSION}/sops-v${SOPS_VERSION}.linux\n
+  \           wget -qO /custom-tools/kubectl https://dl.k8s.io/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl\n
+  \           chmod +x /custom-tools/*\n\n        volumeMounts:\n          - mountPath:
+  /custom-tools\n            name: custom-tools\n          - mountPath: /helm/data\n
+  \           name: helm-data-home"
 resources:
-- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.17
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.18
