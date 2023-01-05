@@ -77,7 +77,7 @@ patchesStrategicMerge:
           - name: SOPS_VERSION
             value: "3.7.3"
           - name: KUBECTL_VERSION
-            value: "1.22.0"
+            value: "1.21.0"
           command: [sh, -c]
           args:
             - |
