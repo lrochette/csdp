@@ -33,6 +33,23 @@ patchesStrategicMerge:
       spec:
         containers:
         - name: argocd-repo-server
+          env:
+          - name: HELM_PLUGINS
+            value: /custom-tools/helm-plugins/
+          # In case wrapper scripts are used, HELM_SECRETS_HELM_PATH needs to be the path of the real helm binary
+          - name: HELM_SECRETS_HELM_PATH
+            value: /usr/local/bin/helm
+          - name: HELM_SECRETS_SOPS_PATH
+            value: /usr/local/bin/sops
+          - name: HELM_SECRETS_KUBECTL_PATH
+            value: /usr/local/bin/kubectl
+          # https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments
+          - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
+            value: "false"
+          - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
+            value: "false"
+          - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
+            value: "false"
           volumeMounts:
           - mountPath: /usr/local/bin/argo-cd-helmfile.sh
             name: custom-tools
