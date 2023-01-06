@@ -28,8 +28,6 @@ patchesStrategicMerge:
         containers:
         - name: argocd-repo-server
           env:
-          - name: HELM_SECRETS_DEBUG
-            value: "true"
           - name: HELM_PLUGINS
             value: /custom-tools/helm-plugins/
           # In case wrapper scripts are used,  SECRETS_HELM_PATH needs to be the path of the real helm binary
@@ -52,17 +50,7 @@ patchesStrategicMerge:
             subPath: argo-cd-helmfile.sh
           - mountPath: /usr/local/bin/helmfile
             name: custom-tools
-            subPath: helmfile                 
-          - mountPath: /home/argocd/.local/share/helm
-            name: helm-data-home
-          - mountPath: /usr/local/bin/sops
-            name: custom-tools
-            subPath: sops
-          - mountPath: /usr/local/bin/kubectl
-            name: custom-tools
-            subPath: kubectl  
-          - mountPath: /custom-tools
-            name: custom-tools         
+            subPath: helmfile                       
         volumes:
         - name: custom-tools
           emptyDir: {}
