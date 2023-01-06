@@ -28,6 +28,8 @@ patchesStrategicMerge:
         containers:
         - name: argocd-repo-server
           env:
+          - name: HELM_SECRETS_DEBUG
+            value: "true"
           - name: HELM_PLUGINS
             value: /custom-tools/helm-plugins/
           # In case wrapper scripts are used,  SECRETS_HELM_PATH needs to be the path of the real helm binary
