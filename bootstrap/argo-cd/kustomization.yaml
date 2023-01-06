@@ -52,7 +52,17 @@ patchesStrategicMerge:
             subPath: argo-cd-helmfile.sh
           - mountPath: /usr/local/bin/helmfile
             name: custom-tools
-            subPath: helmfile                       
+            subPath: helmfile
+          - mountPath: /usr/local/bin/sops
+            name: custom-tools
+            subPath: sops
+          - mountPath: /usr/local/bin/kubectl
+            name: custom-tools
+            subPath: kubectl                 
+          - mountPath: /home/argocd/.local/share/helm
+            name: helm-data-home
+          - mountPath: /custom-tools
+            name: custom-tools                       
         volumes:
         - name: custom-tools
           emptyDir: {}
