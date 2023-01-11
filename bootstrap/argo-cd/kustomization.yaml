@@ -54,4 +54,4 @@ patchesStrategicMerge:
   /custom-tools\n            name: custom-tools\n          - mountPath: /helm/data\n
   \           name: helm-data-home"
 resources:
-- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.18
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.19
