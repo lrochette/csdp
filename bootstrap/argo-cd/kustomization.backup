@@ -3,7 +3,7 @@ configMapGenerator:
 - behavior: merge
   literals:
   - kustomize.buildOptions=--enable-helm
-  - helm.valuesFileSchemes=secrets+gpg-import,secrets+gpg-import-kubernetes,secrets+age-import,secrets+age-import-kubernetes,secrets,http,https
+  - helm.valuesFileSchemes=secrets+gpg-import,secrets+gpg-import-kubernetes,secrets+age-import,secrets+age-import-kubernetes,secrets,http,https  
   - |
     repository.credentials=- passwordSecret:
         key: git_token
@@ -20,7 +20,6 @@ configMapGenerator:
       generate:
         command: [sh, -c]
         args: ["/usr/local/bin/argo-cd-helmfile.sh generate"]
-               
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
@@ -36,9 +35,11 @@ patchesStrategicMerge:
         containers:
         - name: argocd-repo-server
           env:
+          - name: HELM_SECRETS_DEBUG
+            value: "true"
           - name: HELM_PLUGINS
             value: /custom-tools/helm-plugins/
-          # In case wrapper scripts are used, HELM_SECRETS_HELM_PATH needs to be the path of the real helm binary
+          # In case wrapper scripts are used,  SECRETS_HELM_PATH needs to be the path of the real helm binary
           - name: HELM_SECRETS_HELM_PATH
             value: /usr/local/bin/helm
           - name: HELM_SECRETS_SOPS_PATH
@@ -68,7 +69,7 @@ patchesStrategicMerge:
           - mountPath: /home/argocd/.local/share/helm
             name: helm-data-home
           - mountPath: /custom-tools
-            name: custom-tools
+            name: custom-tools                       
         volumes:
         - name: custom-tools
           emptyDir: {}
@@ -77,14 +78,14 @@ patchesStrategicMerge:
         initContainers:
         - name: download-tools
           image: alpine:3.8
-          command: [sh, -c]
           env:
           - name: HELM_SECRETS_VERSION
             value: "4.2.0"
           - name: SOPS_VERSION
             value: "3.7.3"
           - name: KUBECTL_VERSION
-            value: "1.22.0"
+            value: "1.21.0"
+          command: [sh, -c]
           args:
             - |
               # helmfile
@@ -105,4 +106,4 @@ patchesStrategicMerge:
             - mountPath: /helm/data
               name: helm-data-home
 resources:
-- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.17
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.18

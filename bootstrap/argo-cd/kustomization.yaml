@@ -2,6 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 configMapGenerator:
 - behavior: merge
   literals:
+  - kustomize.buildOptions=--enable-helm
+  - helm.valuesFileSchemes=secrets+gpg-import,secrets+gpg-import-kubernetes,secrets+age-import,secrets+age-import-kubernetes,secrets,http,https  
   - |
     repository.credentials=- passwordSecret:
         key: git_token
@@ -10,9 +12,14 @@ configMapGenerator:
       usernameSecret:
         key: git_username
         name: autopilot-secret
-  - "configManagementPlugins=- name: helmfile\n  init:\n    command: [sh, -c]\n    args:
-    [\"/usr/local/bin/argo-cd-helmfile.sh init\"]\n  generate:\n    command: [sh,
-    -c]\n    args: [\"/usr/local/bin/argo-cd-helmfile.sh generate\"]\n           \n"
+  - |
+    configManagementPlugins=- name: helmfile
+      init:
+        command: [sh, -c]
+        args: ["/usr/local/bin/argo-cd-helmfile.sh init"]
+      generate:
+        command: [sh, -c]
+        args: ["/usr/local/bin/argo-cd-helmfile.sh generate"]
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
