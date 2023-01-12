@@ -1,0 +1,55 @@
+- op: add
+  path: "/spec/template/spec/volumes/-"
+  value:
+    name: custom-tools
+    emptyDir: {}
+
+- op: add
+  path: "/spec/template/spec/initContainers"
+  value:
+    - name: get-sops
+      image: alpine:3.8
+      env:
+      - name: SOPS_VERSION
+        value: v3.7.1
+      command: [sh, -c]
+      args:
+        - |
+          wget -O sops https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux
+          chmod +x sops
+          mv sops /custom-tools/
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/sops
+    name: custom-tools
+    subPath: sops
+
+- op: add
+  path: "/spec/template/spec/initContainers/-"
+  value:
+      name: get-jq
+      image: alpine:3.8
+      env:
+      - name: JQ_VERSION
+        value: "1.6"
+      command: [sh, -c]
+      args:
+        - |
+          wget -O jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64
+          chmod +x jq
+          mv jq /custom-tools/
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/jq
+    name: custom-tools
+    subPath: jq
