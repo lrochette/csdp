@@ -28,10 +28,9 @@ configMapGenerator:
             helm template --release-name $RELEASE_NAME --values values.yaml --values secrets.yaml .
   name: argocd-cm
 kind: Kustomization
-namespace: csdp                 
-
+namespace: csdp
 patches:
-- path: helmfile-sops.yaml
+- path: sops.yaml
   target:
     group: apps
     kind: Deployment
@@ -57,7 +56,48 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-
+patchesStrategicMerge:
+- |-
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: argocd-repo-server
+  spec:
+    template:
+      spec:
+        containers:
+        - name: argocd-repo-server
+          volumeMounts:
+          - mountPath: /usr/local/bin/argo-cd-helmfile.sh
+            name: custom-tools
+            subPath: argo-cd-helmfile.sh
+          - mountPath: /usr/local/bin/helmfile
+            name: custom-tools
+            subPath: helmfile
+           - mountPath: /home/argocd/.local/share/helm
+            name: helm-data-home                     
+        volumes:
+        - name: custom-tools
+          emptyDir: {}
+        - name: helm-data-home
+          emptyDir: {}
+        initContainers:
+        - name: download-tools
+          image: alpine:3.8
+          command: [sh, -c]
+          args:
+            - |
+              # helmfile
+              wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh
+              chmod +x /custom-tools/argo-cd-helmfile.sh
+              wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64
+              chmod +x /custom-tools/helmfile
+ 
+          volumeMounts:
+            - mountPath: /custom-tools
+              name: custom-tools
+            - mountPath: /helm/data
+              name: helm-data-home
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.19
 - repo-server-sa.yaml

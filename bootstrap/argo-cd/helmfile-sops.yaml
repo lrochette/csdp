@@ -1,0 +1,83 @@
+- op: add
+  path: "/spec/template/spec/volumes/-"
+  value:
+    name: custom-tools
+    emptyDir: {}
+- op: add
+  path: "/spec/template/spec/volumes/-"
+  value:
+    name: helm-data-home
+    emptyDir: {}
+    
+- op: add
+  path: "/spec/template/spec/initContainers"
+  value:
+    - name: get-sops-and-helmfile
+      image: alpine:3.8
+      env:
+      - name: SOPS_VERSION
+        value: v3.7.1
+      command: [sh, -c]
+      args:
+        - |
+          # sops
+          wget -O sops https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux
+          chmod +x sops
+          mv sops /custom-tools/
+          # helmfile
+          wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh
+          chmod +x /custom-tools/argo-cd-helmfile.sh
+          wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64
+          chmod +x /custom-tools/helmfile
+
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+        - mountPath: /helm/data
+          name: helm-data-home
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/sops
+    name: custom-tools
+    subPath: sops
+- op: add
+  path: "/spec/template/spec/initContainers/-"
+  value:
+      name: get-jq
+      image: alpine:3.8
+      env:
+      - name: JQ_VERSION
+        value: "1.6"
+      command: [sh, -c]
+      args:
+        - |
+          wget -O jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64
+          chmod +x jq
+          mv jq /custom-tools/
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/jq
+    name: custom-tools
+    subPath: jq
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/argo-cd-helmfile.sh
+    name: custom-tools
+    subPath: argo-cd-helmfile.sh
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/helmfile
+    name: custom-tools
+    subPath: helmfile
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /home/argocd/.local/share/helm
+    name: helm-data-home
