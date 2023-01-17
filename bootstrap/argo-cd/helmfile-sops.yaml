@@ -8,11 +8,29 @@
   value:
     name: helm-data-home
     emptyDir: {}
-    
+
 - op: add
   path: "/spec/template/spec/initContainers"
   value:
-    - name: get-sops-and-helmfile
+    - name: get-helmfile
+      image: alpine:3.8
+      command: [sh, -c]
+      args:
+        - |
+          # helmfile
+          wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh
+          chmod +x /custom-tools/argo-cd-helmfile.sh
+          wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64
+          chmod +x /custom-tools/helmfile
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+        - mountPath: /helm/data
+          name: helm-data-home
+- op: add
+  path: "/spec/template/spec/initContainers"
+  value:
+    - name: get-sops
       image: alpine:3.8
       env:
       - name: SOPS_VERSION
@@ -24,17 +42,9 @@
           wget -O sops https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux
           chmod +x sops
           mv sops /custom-tools/
-          # helmfile
-          wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh
-          chmod +x /custom-tools/argo-cd-helmfile.sh
-          wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64
-          chmod +x /custom-tools/helmfile
-
       volumeMounts:
         - mountPath: /custom-tools
           name: custom-tools
-        - mountPath: /helm/data
-          name: helm-data-home
 - op: add
   path: "/spec/template/spec/containers/0/volumeMounts/-"
   value:
