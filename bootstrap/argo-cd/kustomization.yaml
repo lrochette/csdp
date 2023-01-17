@@ -43,3 +43,4 @@ patches:
     version: v1
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.19
+- argocd-server-ingress.yaml
