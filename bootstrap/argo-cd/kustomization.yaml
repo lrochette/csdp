@@ -83,6 +83,21 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+- path: sops.yaml
+  target:
+    group: apps
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+- patch: |-
+    - op: add
+      path: /metadata/annotations
+      value:
+        eks.amazonaws.com/role-arn: arn:aws:iam::835357571861:role/aws-service-role/cks.kms.amazonaws.com/AWSServiceRoleForKeyManagementServiceCustomKeyStores
+  target:
+    kind: ServiceAccount
+    name: argocd-server
+    version: v1
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.19
 - argocd-server-ingress.yaml
