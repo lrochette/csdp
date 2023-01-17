@@ -30,14 +30,14 @@ configMapGenerator:
 kind: Kustomization
 #namespace: csdp
 patches:
-- target:
-    name: argocd-cm
-    kind: ConfigMap
-    version: v1
-  patch: |-
-    - op: add
-      path: /data/kustomize.buildOptions
-      value: '--enable-helm'
+# - target:
+#     name: argocd-cm
+#     kind: ConfigMap
+#     version: v1
+#   patch: |-
+#     - op: add
+#       path: /data/kustomize.buildOptions
+#       value: --enable-helm
 - path: helmfile-sops.yaml
   target:
     group: apps
