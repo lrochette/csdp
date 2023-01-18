@@ -1,8 +1,9 @@
-- op: add
-  path: "/spec/template/spec/volumes/-"
-  value:
-    name: custom-tools
-    emptyDir: {}
+# already define in helmfile.yaml
+# - op: add
+#   path: "/spec/template/spec/volumes/-"
+#   value:
+#     name: custom-tools
+#     emptyDir: {}
 
 - op: add
   path: "/spec/template/spec/initContainers"
