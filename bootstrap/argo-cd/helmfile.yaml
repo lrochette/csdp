@@ -57,9 +57,9 @@
     mountPath: /usr/local/bin/jq
     name: custom-tools
     subPath: jq
-    
+
 - op: add
-  path: "/spec/template/spec/initContainers"
+  path: "/spec/template/spec/initContainers/-"
   value:
     - name: get-helmfile
       image: alpine:3.8
