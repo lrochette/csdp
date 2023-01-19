@@ -62,16 +62,18 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
       value:
-        - name: HELM_PLUGINS
-          value: /custom-tools/helm-plugins
+        name: HELM_PLUGINS
+        value: /custom-tools/helm-plugins
   target:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - path: helmfile.yaml
   target:
     group: apps
