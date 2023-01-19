@@ -67,11 +67,10 @@
     args:
       - |
         wget -O /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh
-        chmod +x /custom-tools/argo-cd-helmfile.sh
         wget -O /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.144.0/helmfile_linux_amd64
-        chmod +x /custom-tools/helmfile
         wget -O- https://get.helm.sh/helm-v3.10.3-linux-amd64.tar.gz | tar -C /custom-tools -xvzf - --strip-components 1 linux-amd64/helm
-        chmod +x /custom-tools/helm
+        chmod +x /custom-tools/*
+        mkdir -p /custom-tools/helm-plugins
         wget -qO- https://github.com/jkroepke/helm-secrets/releases/latest/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-
 
     volumeMounts:
