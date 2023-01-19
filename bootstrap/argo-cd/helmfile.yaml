@@ -71,7 +71,7 @@
         wget -O- https://get.helm.sh/helm-v3.10.3-linux-amd64.tar.gz | tar -C /custom-tools -xvzf - --strip-components 1 linux-amd64/helm
         chmod +x /custom-tools/*
         mkdir -p /custom-tools/helm-plugins
-        wget -qO- https://github.com/jkroepke/helm-secrets/releases/latest/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-
+        wget -qO- https://github.com/jkroepke/helm-secrets/releases/latest/download/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-
 
     volumeMounts:
       - mountPath: /custom-tools
