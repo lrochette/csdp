@@ -72,7 +72,7 @@
         chmod +x /custom-tools/helmfile
         wget -O- https://get.helm.sh/helm-v3.10.3-linux-amd64.tar.gz | tar -C /custom-tools -xvzf - --strip-components 1 linux-amd64/helm
         chmod +x /custom-tools/helm
-        helm plugin install https://github.com/jkroepke/helm-secrets --version v4.2.2
+        /custom-tools/helm plugin install https://github.com/jkroepke/helm-secrets --version v4.2.2
 
     volumeMounts:
       - mountPath: /custom-tools
