@@ -18,8 +18,6 @@ configMapGenerator:
         args:
          - |
             /usr/local/bin/argo-cd-helmfile.sh init
-            # $(HOME=/tmp aws sts assume-role --role-arn arn:aws:iam::835357571861:role/aws-service-role/cks.kms.amazonaws.com/AWSServiceRoleForKeyManagementServiceCustomKeyStores |\
-            # jq -r '.Credentials | "export AWS_ACCESS_KEY_ID=\(.AccessKeyId)\nexport AWS_SECRET_ACCESS_KEY=\(.SecretAccessKey)\nexport AWS_SESSION_TOKEN=\(.SessionToken)"')
             find . -name secrets.yaml | xargs sops -d -i
             helm dependency update
       generate:
@@ -42,7 +40,7 @@ patches:
     kind: ConfigMap
     name: argocd-cm
     version: v1
-    
+
 - patch: |-
     - op: add
       path: /metadata/annotations
