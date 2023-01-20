@@ -66,8 +66,9 @@ patches:
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/envFrom/-
-      secretRef:
-        name: argocd-aws-credentials
+      value:
+        secretRef:
+          name: argocd-aws-credentials
   target:
     kind: Deployment
     name: argocd-repo-server
