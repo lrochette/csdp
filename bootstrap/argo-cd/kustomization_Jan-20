@@ -42,7 +42,6 @@ patches:
     kind: ConfigMap
     name: argocd-cm
     version: v1
-    
 - patch: |-
     - op: add
       path: /metadata/annotations
@@ -52,7 +51,6 @@ patches:
     kind: ServiceAccount
     name: argocd-server
     version: v1
-
 - patch: |-
     - op: add
       path: /spec/template/spec/serviceAccountName
@@ -82,7 +80,6 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-
 - patch: |-
     - op: add
       path: /metadata/annotations
@@ -92,7 +89,6 @@ patches:
     kind: ServiceAccount
     name: argocd-server
     version: v1
-
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.20
 - argocd-server-ingress.yaml
