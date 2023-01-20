@@ -62,7 +62,6 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -73,7 +72,6 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-
 - path: helmfile.yaml
   target:
     group: apps
