@@ -93,5 +93,11 @@
 - op: add
   path: "/spec/template/spec/containers/0/volumeMounts/-"
   value:
+    mountPath: /usr/local/bin/helm
+    name: custom-tools
+    subPath: helm
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
     mountPath: /custom-tools
     name: custom-tools
