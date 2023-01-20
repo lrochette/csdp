@@ -65,17 +65,6 @@ patches:
 
 - patch: |-
     - op: add
-      path: /spec/template/spec/containers/0/envFrom/-
-      value:
-        secretRef:
-          name: argocd-aws-credentials
-  target:
-    kind: Deployment
-    name: argocd-repo-server
-    version: v1
-
-- patch: |-
-    - op: add
       path: /spec/template/spec/containers/0/env/-
       value:
         name: HELM_PLUGINS
