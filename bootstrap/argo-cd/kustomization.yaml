@@ -76,15 +76,15 @@ patches:
 
 - patch: |-
     - op: add
-      path: /spec/template/spec/containers/0/envFrom/-
+      path: /spec/template/spec/containers/0/envFrom
       value:
-        secretRef:
-          name: argocd-aws-credentials
+        - secretRef:
+            name: argocd-aws-credentials
   target:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-    
+
 - path: helmfile.yaml
   target:
     group: apps
