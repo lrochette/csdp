@@ -1,10 +1,4 @@
 - op: add
-  path: /spec/template/spec/containers/0/envFrom/0
-  value:
-    secretRef:
-      name: argocd-aws-credentials
-
-- op: add
   path: "/spec/template/spec/volumes/-"
   value:
     name: custom-tools
