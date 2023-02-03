@@ -1,0 +1,107 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+configMapGenerator:
+- behavior: merge
+  literals:
+  - |
+    repository.credentials=- passwordSecret:
+        key: git_token
+        name: autopilot-secret
+      url: https://github.com/
+      usernameSecret:
+        key: git_username
+        name: autopilot-secret
+  - |
+    configManagementPlugins=
+    - name: helmfile
+      init:
+        command: [sh, -c]
+        args:
+         - |
+            /usr/local/bin/argo-cd-helmfile.sh init
+            find . -name secrets.yaml | xargs sops -d -i
+            helm dependency update
+      generate:
+        command: [sh, -c]
+        args:
+          - |
+            /usr/local/bin/argo-cd-helmfile.sh generate
+            helm template --release-name $RELEASE_NAME --values values.yaml --values secrets.yaml .
+      allowConcurrency: false
+      lockRepo: false
+  name: argocd-cm
+kind: Kustomization
+namespace: csdp
+patches:
+- patch: |-
+    - op: add
+      path: /data/kustomize.buildOptions
+      value: --enable-helm
+  target:
+    kind: ConfigMap
+    name: argocd-cm
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /metadata/annotations
+      value:
+        eks.amazonaws.com/role-arn: arn:aws:iam::835357571861:role/eksctl-onpremlr-cluster-ServiceRole-1RD8IAI5PQGPC
+  target:
+    kind: ServiceAccount
+    name: argocd-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/serviceAccountName
+      value: argocd-repo-server
+    - op: add
+      path: /spec/template/spec/automountServiceAccountToken
+      value: true
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: HELM_PLUGINS
+        value: /custom-tools/helm-plugins
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/envFrom
+      value:
+        - secretRef:
+            name: argocd-aws-credentials
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- path: helmfile.yaml
+  target:
+    group: apps
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /metadata/annotations
+      value:
+        eks.amazonaws.com/role-arn: arn:aws:iam::835357571861:role/eksctl-onpremlr-cluster-ServiceRole-1RD8IAI5PQGPC
+  target:
+    kind: ServiceAccount
+    name: argocd-server
+    version: v1
+
+resources:
+- github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.20
+- argocd-server-ingress.yaml
