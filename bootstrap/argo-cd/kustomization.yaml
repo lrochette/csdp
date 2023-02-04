@@ -41,5 +41,61 @@ patches:
     kind: ConfigMap
     name: argocd-cm
     version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: AWS_REGION
+        value: us-east-1
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: AVP_TYPE
+        value: awssecretmanager
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: AWS_REGION
+        value: us-east-1
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: AWS_ACCESS_KEY_ID
+        value: ASIA4E7ZQ7MK45234VUG
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: AWS_SECRET_ACCESS_KEY
+        value: '/8561GN3DMgAI46fVhhtMpyOxmyAtvxq03WYv13y'
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.22
