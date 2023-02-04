@@ -11,7 +11,7 @@ configMapGenerator:
         key: git_username
         name: autopilot-secret
   - |
-    configManagementPlugins: |
+    configManagementPlugins=
     - name: argocd-vault-plugin
       generate:
         command: ["argocd-vault-plugin"]
@@ -32,5 +32,14 @@ configMapGenerator:
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
+patches:
+- patch: |-
+    - op: add
+      path: /data/kustomize.buildOptions
+      value: --enable-helm
+  target:
+    kind: ConfigMap
+    name: argocd-cm
+    version: v1
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.22
