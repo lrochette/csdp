@@ -33,6 +33,7 @@ configMapGenerator:
 kind: Kustomization
 namespace: csdp
 patches:
+
 - patch: |-
     - op: add
       path: /data/kustomize.buildOptions
@@ -41,6 +42,7 @@ patches:
     kind: ConfigMap
     name: argocd-cm
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -51,6 +53,7 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -61,16 +64,7 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-- patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: AWS_REGION
-        value: us-east-1
-  target:
-    kind: Deployment
-    name: argocd-repo-server
-    version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -81,6 +75,7 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -91,5 +86,6 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.22
