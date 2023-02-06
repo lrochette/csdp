@@ -14,7 +14,7 @@ configMapGenerator:
     configManagementPlugins=
     - name: argocd-vault-plugin
       generate:
-        command: ["argocd-vault-plugin"]
+        command: ["/usr/local/bin/argocd-vault-plugin"]
         args: ["generate", "./"]
     - name: argocd-vault-plugin-helm
       generate:
