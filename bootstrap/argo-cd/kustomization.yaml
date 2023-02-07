@@ -17,9 +17,24 @@ configMapGenerator:
         command: ["argocd-vault-plugin"]
         args: ["generate", "./"]
   name: argocd-cm
+
+    # - name: argocd-vault-plugin-helm
+    #   generate:
+    #     command: ["sh", "-c"]
+    #     args: ["helm template . | argocd-vault-plugin generate -"]
+    # - name: argocd-vault-plugin-helm-with-args
+    #   generate:
+    #     command: ["sh", "-c"]
+    #     args: ["helm template ${helm_args} . | argocd-vault-plugin generate -"]
+    # - name: argocd-vault-plugin-kustomize
+    #   generate:
+    #     command: ["sh", "-c"]
+    #     args: ["kustomize build . | argocd-vault-plugin generate -"]
+
 kind: Kustomization
 namespace: csdp
 patches:
+
 - patch: |-
     - op: add
       path: /data/kustomize.buildOptions
@@ -28,6 +43,7 @@ patches:
     kind: ConfigMap
     name: argocd-cm
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -38,6 +54,7 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -48,6 +65,7 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -58,6 +76,7 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -68,11 +87,13 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 - path: aws-secrets.yaml
   target:
     group: apps
     kind: Deployment
     name: argocd-repo-server
     version: v1
+
 resources:
 - github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-cd?ref=0.1.22
