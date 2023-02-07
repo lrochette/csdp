@@ -71,7 +71,7 @@ patches:
       path: /spec/template/spec/containers/0/env/-
       value:
         name: AWS_ACCESS_KEY_ID
-        value: ASIA4E7ZQ7MKXYNOUICZ
+        value: ASIA4E7ZQ7MK25H5747I
   target:
     kind: Deployment
     name: argocd-repo-server
@@ -82,7 +82,7 @@ patches:
       path: /spec/template/spec/containers/0/env/-
       value:
         name: AWS_SECRET_ACCESS_KEY
-        value: 'Hdb4SAEc3h4TO/HWEzM76bLAU5S6yTJHVnKF3frf'
+        value: eVvGwg9P6dTerIRTdxI76WzikGaPp0d51Z1tDCrM
   target:
     kind: Deployment
     name: argocd-repo-server
