@@ -17,7 +17,7 @@ configMapGenerator:
         command: ["/usr/local/bin/argocd-vault-plugin"]
         args: ["generate", "./"]
   name: argocd-cm
-  
+
     # - name: argocd-vault-plugin-helm
     #   generate:
     #     command: ["sh", "-c"]
@@ -84,6 +84,13 @@ patches:
         name: AWS_SECRET_ACCESS_KEY
         value: 'Hdb4SAEc3h4TO/HWEzM76bLAU5S6yTJHVnKF3frf'
   target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
+- path: aws-secrets.yaml
+  target:
+    group: apps
     kind: Deployment
     name: argocd-repo-server
     version: v1
