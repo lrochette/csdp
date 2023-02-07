@@ -88,6 +88,17 @@ patches:
     name: argocd-repo-server
     version: v1
 
+- patch: |-
+    - op: add
+      path: /spec/template/spec/containers/0/env/-
+      value:
+        name: AWS_SESSION_TOKEN
+        value: 'IQoJb3JpZ2luX2VjENz//////////wEaCXVzLWVhc3QtMSJHMEUCIH3KpWdpb4YVjT9uFl+7BHaM0xACur0eW1A3WQoZanBHAiEAn2nI72KFqM5v+Zj0FKFR2GIGM4BPTQmUaBxyMl1+/DYqpAMIZRABGgw4MzUzNTc1NzE4NjEiDNr6sGIHwU7xuRIklSqBA0neynWBoQfDjPDC70IKUK9GmFbO5s4B4PkiXq8hyfNw3PXc0t4ud5ThDL1ikLlPzmhr4Y+yCHVKxkBegQYn2dEyCAnwpkwLtDiNI0y7UtZmJDaHWNedx5bdTrQlHG87MkXJVuBWkzYH6HQ0X7H23CGJoe5euphZCcnT/XVYKtpAUoq8D4f4WuFOkq5zHR574p8b9vO4BkQIcwCPrdF2tVVs14vLE63BzN7vtvATex6d09i+GJlddjBBtSHvIEUeXvA/QA1JCEbhJAjkEho4nw6iuqoKRTaM1HLqUgyiezOq9DG9DUMnz0UVefzw6m0TdfDSHn4BVLESI3E6zmDa2M1nK0QWlFA02Ihh+kdQ5jJlYIgB0BSf/0kEL7cVp+7XzbD1fwXExRCTenmYFjQ6h0TwkrxTeb+GpS3oKLofYP8Q7aBZ7iTKfxVg1xknwAf5zZiXV65/esA70M+AQmwfbx2/rddJP+YSJOi0aG89WRbVySyPD7DgX+erweIaJNBMAiUwqtqKnwY6pgG29Mr75Xtnsm8XSygJM5FS8ezX3SWuvjhdLym8u4h7WeCtVxi3mYq2UHjllrf05DSt+1LE/ko0ODGK+/LVD8FMOBfpUsOjicfVzQygHXtRx7iK2cLwul3bU6kK03pwkSlA/0G4n8+87d6xde64D3WlP8qxZmR1ycEEshNou9j1afDa1Fms+BXpWfgmDXK+ob2ChidjJAqJP7Ag+iNBALPDAxP0kD0F'
+  target:
+    kind: Deployment
+    name: argocd-repo-server
+    version: v1
+
 - path: aws-secrets.yaml
   target:
     group: apps
