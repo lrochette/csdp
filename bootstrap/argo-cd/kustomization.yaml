@@ -60,7 +60,7 @@ patches:
       path: /spec/template/spec/containers/0/env/-
       value:
         name: AVP_TYPE
-        value: awssecretmanager
+        value: awssecretsmanager
   target:
     kind: Deployment
     name: argocd-repo-server
