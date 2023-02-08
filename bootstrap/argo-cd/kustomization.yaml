@@ -71,7 +71,7 @@ patches:
       path: /spec/template/spec/containers/0/env/-
       value:
         name: AWS_ACCESS_KEY_ID
-        value: ASIA4E7ZQ7MK25H5747I
+        value: 'ASIA4E7ZQ7MKTETS6ZWO'
   target:
     kind: Deployment
     name: argocd-repo-server
@@ -82,7 +82,7 @@ patches:
       path: /spec/template/spec/containers/0/env/-
       value:
         name: AWS_SECRET_ACCESS_KEY
-        value: eVvGwg9P6dTerIRTdxI76WzikGaPp0d51Z1tDCrM
+        value: 'rbJvUVLOZx/NRhRe5wknz7ds6tjbzcEQze4utvuZ'
   target:
     kind: Deployment
     name: argocd-repo-server
@@ -93,7 +93,7 @@ patches:
       path: /spec/template/spec/containers/0/env/-
       value:
         name: AWS_SESSION_TOKEN
-        value: 'IQoJb3JpZ2luX2VjENz//////////wEaCXVzLWVhc3QtMSJHMEUCIH3KpWdpb4YVjT9uFl+7BHaM0xACur0eW1A3WQoZanBHAiEAn2nI72KFqM5v+Zj0FKFR2GIGM4BPTQmUaBxyMl1+/DYqpAMIZRABGgw4MzUzNTc1NzE4NjEiDNr6sGIHwU7xuRIklSqBA0neynWBoQfDjPDC70IKUK9GmFbO5s4B4PkiXq8hyfNw3PXc0t4ud5ThDL1ikLlPzmhr4Y+yCHVKxkBegQYn2dEyCAnwpkwLtDiNI0y7UtZmJDaHWNedx5bdTrQlHG87MkXJVuBWkzYH6HQ0X7H23CGJoe5euphZCcnT/XVYKtpAUoq8D4f4WuFOkq5zHR574p8b9vO4BkQIcwCPrdF2tVVs14vLE63BzN7vtvATex6d09i+GJlddjBBtSHvIEUeXvA/QA1JCEbhJAjkEho4nw6iuqoKRTaM1HLqUgyiezOq9DG9DUMnz0UVefzw6m0TdfDSHn4BVLESI3E6zmDa2M1nK0QWlFA02Ihh+kdQ5jJlYIgB0BSf/0kEL7cVp+7XzbD1fwXExRCTenmYFjQ6h0TwkrxTeb+GpS3oKLofYP8Q7aBZ7iTKfxVg1xknwAf5zZiXV65/esA70M+AQmwfbx2/rddJP+YSJOi0aG89WRbVySyPD7DgX+erweIaJNBMAiUwqtqKnwY6pgG29Mr75Xtnsm8XSygJM5FS8ezX3SWuvjhdLym8u4h7WeCtVxi3mYq2UHjllrf05DSt+1LE/ko0ODGK+/LVD8FMOBfpUsOjicfVzQygHXtRx7iK2cLwul3bU6kK03pwkSlA/0G4n8+87d6xde64D3WlP8qxZmR1ycEEshNou9j1afDa1Fms+BXpWfgmDXK+ob2ChidjJAqJP7Ag+iNBALPDAxP0kD0F'
+        value: "IQoJb3JpZ2luX2VjEPX//////////wEaCXVzLWVhc3QtMSJIMEYCIQDoHZHrk7LDz0JkXPPzgCFxlqqjPMfL7zLGpgQnKy/stQIhAIL0v+2phGbyGEzU04ze9gcJHvqrbCy8BaQEeP7C2vIlKqQDCH4QARoMODM1MzU3NTcxODYxIgwtA85a5CVW5qaseKcqgQPFsuBHFAEyVIM6JyKUb06qdBMxm00R3m3EA4V16rVXrRuh42Pkcbw9jev1R9YvTG28Qf5VPLNaaK0y0DrKlvlq8TgqEao3jRz9UjTr4brdk9DE2vqsDUtnCtUHgQrSPkD3BbJtJZF6Z6SWhg6Qis6Xi/OTENKp+DcNpt1rOW+Kb56AgFCkEUFwLjyNYsZfK7tggnsxkBchLs+ELEG9NT4mVj/pbTSrzYc1rw8icxQy2o94Y2xixnABzSz3Yw9RgzrIjnd0NdFlsl1AkE0Pmw8+9gcXUWbTE5bmnK6/JZlzav/IDJxyydSl2/19b6Rpw3Aa+hM2T1F37nOY/HCQ5VCfwRVhXjEikf1tiPtFqH6d0zjInAg3DD0pj6BxtGBI9Ko1joGEtUCUfIWt2Cf7dVftF5iJztTejo0CGqtWCyOWJUKvsoLnYeHXUVIBAnsKVAkJB5fN1ef0Mm0VEcI77wqSFUY5uQWFZ/Pp1cXonp0m5Xz5WB21KjxsMac8S6HloshDMOeOkJ8GOqUB8xnIV70uZYje2fHkNz/k6kbQ6puXPF0bCiVjTXA+e/zuPPgrSQrU4KWNIqC7u6+98M+LYg6hcRiOpZyV/tJdzwNSGme+93PceXUHsyuXY3HNxDur5CxnqGfFD/bZJsexI40hqc6n988D7XQ40XBPLQwXi6lYU1MCSZHcOVAd62JUH4/7Hf0VBIwPh6V7HY4a1mBfxi5uDZOOYeKzgJZDJT4fSSp7"
   target:
     kind: Deployment
     name: argocd-repo-server
