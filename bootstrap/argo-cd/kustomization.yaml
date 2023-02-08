@@ -32,7 +32,7 @@ patches:
     - op: add
       path: /metadata/annotations
       value:
-        eks.amazonaws.com/role-arn: arn:aws:iam::835357571861:role/eksctl-onpremlr-cluster-ServiceRole-1RD8IAI5PQGPC
+        arn:aws:iam::835357571861:role/eksctl-onpremlr-cluster-ServiceRole-1RD8IAI5PQGPC
   target:
     kind: ServiceAccount
     name: argocd-server
