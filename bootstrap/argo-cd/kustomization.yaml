@@ -32,7 +32,7 @@ patches:
     - op: add
       path: /metadata/annotations
       value:
-        eks.amazonaws.com/role-arn: arn:aws:sts::835357571861:assumed-role/eksctl-onpremlr-nodegroup-runner-NodeInstanceRole-Q8BL8DSP476Z/i-07c5ac1fa1065d3bb
+        eks.amazonaws.com/role-arn: arn:aws:iam::835357571861:role/eksctl-onpremlr-cluster-ServiceRole-1RD8IAI5PQGPC
 
   target:
     kind: ServiceAccount
