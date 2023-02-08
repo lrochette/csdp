@@ -15,7 +15,7 @@ configMapGenerator:
     - name: argocd-vault-plugin
       generate:
         command: ["argocd-vault-plugin"]
-        args: ["generate", "./"]
+        args: ["generate", "./", "--verbose-sensitive-output"]
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
@@ -37,7 +37,7 @@ patches:
     kind: ServiceAccount
     name: argocd-server
     version: v1
-    
+
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
