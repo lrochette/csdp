@@ -15,7 +15,7 @@ configMapGenerator:
     - name: argocd-vault-plugin
       generate:
         command: ["argocd-vault-plugin"]
-        args: ["generate", "./", "--verbose-sensitive-output"]
+        args: ["generate", "./"]
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
@@ -33,6 +33,7 @@ patches:
       path: /metadata/annotations
       value:
         eks.amazonaws.com/role-arn: arn:aws:iam::835357571861:role/eksctl-onpremlr-cluster-ServiceRole-1RD8IAI5PQGPC
+
   target:
     kind: ServiceAccount
     name: argocd-server
@@ -58,36 +59,7 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-- patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: AWS_ACCESS_KEY_ID
-        value: 'ASIA4E7ZQ7MKTETS6ZWO'
-  target:
-    kind: Deployment
-    name: argocd-repo-server
-    version: v1
-- patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: AWS_SECRET_ACCESS_KEY
-        value: 'rbJvUVLOZx/NRhRe5wknz7ds6tjbzcEQze4utvuZ'
-  target:
-    kind: Deployment
-    name: argocd-repo-server
-    version: v1
-- patch: |-
-    - op: add
-      path: /spec/template/spec/containers/0/env/-
-      value:
-        name: AWS_SESSION_TOKEN
-        value: "IQoJb3JpZ2luX2VjEPX//////////wEaCXVzLWVhc3QtMSJIMEYCIQDoHZHrk7LDz0JkXPPzgCFxlqqjPMfL7zLGpgQnKy/stQIhAIL0v+2phGbyGEzU04ze9gcJHvqrbCy8BaQEeP7C2vIlKqQDCH4QARoMODM1MzU3NTcxODYxIgwtA85a5CVW5qaseKcqgQPFsuBHFAEyVIM6JyKUb06qdBMxm00R3m3EA4V16rVXrRuh42Pkcbw9jev1R9YvTG28Qf5VPLNaaK0y0DrKlvlq8TgqEao3jRz9UjTr4brdk9DE2vqsDUtnCtUHgQrSPkD3BbJtJZF6Z6SWhg6Qis6Xi/OTENKp+DcNpt1rOW+Kb56AgFCkEUFwLjyNYsZfK7tggnsxkBchLs+ELEG9NT4mVj/pbTSrzYc1rw8icxQy2o94Y2xixnABzSz3Yw9RgzrIjnd0NdFlsl1AkE0Pmw8+9gcXUWbTE5bmnK6/JZlzav/IDJxyydSl2/19b6Rpw3Aa+hM2T1F37nOY/HCQ5VCfwRVhXjEikf1tiPtFqH6d0zjInAg3DD0pj6BxtGBI9Ko1joGEtUCUfIWt2Cf7dVftF5iJztTejo0CGqtWCyOWJUKvsoLnYeHXUVIBAnsKVAkJB5fN1ef0Mm0VEcI77wqSFUY5uQWFZ/Pp1cXonp0m5Xz5WB21KjxsMac8S6HloshDMOeOkJ8GOqUB8xnIV70uZYje2fHkNz/k6kbQ6puXPF0bCiVjTXA+e/zuPPgrSQrU4KWNIqC7u6+98M+LYg6hcRiOpZyV/tJdzwNSGme+93PceXUHsyuXY3HNxDur5CxnqGfFD/bZJsexI40hqc6n988D7XQ40XBPLQwXi6lYU1MCSZHcOVAd62JUH4/7Hf0VBIwPh6V7HY4a1mBfxi5uDZOOYeKzgJZDJT4fSSp7"
-  target:
-    kind: Deployment
-    name: argocd-repo-server
-    version: v1
+
 - path: aws-secrets.yaml
   target:
     group: apps
