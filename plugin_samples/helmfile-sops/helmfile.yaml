@@ -1,0 +1,103 @@
+- op: add
+  path: "/spec/template/spec/volumes/-"
+  value:
+    name: custom-tools
+    emptyDir: {}
+- op: add
+  path: "/spec/template/spec/volumes/-"
+  value:
+    name: helm-data-home
+    emptyDir: {}
+
+- op: add
+  path: "/spec/template/spec/initContainers"
+  value:
+    - name: get-sops
+      image: alpine:3.8
+      env:
+      - name: SOPS_VERSION
+        value: v3.7.1
+      command: [sh, -c]
+      args:
+        - |
+          wget -O sops https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux
+          chmod +x sops
+          mv sops /custom-tools/
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/sops
+    name: custom-tools
+    subPath: sops
+- op: add
+  path: "/spec/template/spec/initContainers/-"
+  value:
+    name: get-jq
+    image: alpine:3.8
+    env:
+    - name: JQ_VERSION
+      value: "1.6"
+    command: [sh, -c]
+    args:
+      - |
+        wget -O jq https://github.com/stedolan/jq/releases/download/jq-${JQ_VERSION}/jq-linux64
+        chmod +x jq
+        mv jq /custom-tools/
+    volumeMounts:
+      - mountPath: /custom-tools
+        name: custom-tools
+
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/jq
+    name: custom-tools
+    subPath: jq
+
+- op: add
+  path: "/spec/template/spec/initContainers/-"
+  value:
+    name: get-helmfile
+    image: alpine:3.8
+    command: [sh, -c]
+    args:
+      - |
+        mkdir -p /custom-tools/helm-plugins
+        wget -O /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh
+        wget -O /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.144.0/helmfile_linux_amd64
+        wget -O- https://get.helm.sh/helm-v3.10.3-linux-amd64.tar.gz | tar -C /custom-tools -xvzf - --strip-components 1 linux-amd64/helm
+        chmod +x /custom-tools/*
+        wget -qO- https://github.com/jkroepke/helm-secrets/releases/latest/download/helm-secrets.tar.gz | tar -C /custom-tools/helm-plugins -xzf-
+
+    volumeMounts:
+      - mountPath: /custom-tools
+        name: custom-tools
+      - mountPath: /helm/data
+        name: helm-data-home
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/argo-cd-helmfile.sh
+    name: custom-tools
+    subPath: argo-cd-helmfile.sh
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/helmfile
+    name: custom-tools
+    subPath: helmfile
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /usr/local/bin/helm
+    name: custom-tools
+    subPath: helm
+- op: add
+  path: "/spec/template/spec/containers/0/volumeMounts/-"
+  value:
+    mountPath: /custom-tools
+    name: custom-tools
