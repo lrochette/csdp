@@ -27,7 +27,7 @@ configMapGenerator:
     - name: argocd-vault-plugin-kustomize
       generate:
         command: ["sh", "-c"]
-        args: ["kustomize build . | argocd-vault-plugin generate -"]             
+        args: ["kustomize build . | argocd-vault-plugin generate -"]
   name: argocd-cm
 kind: Kustomization
 namespace: csdp
@@ -45,12 +45,10 @@ patches:
       path: /metadata/annotations
       value:
         eks.amazonaws.com/role-arn: arn:aws:iam::835357571861:role/eksctl-onpremlr-cluster-ServiceRole-1RD8IAI5PQGPC
-
   target:
     kind: ServiceAccount
     name: argocd-server
     version: v1
-
 - patch: |-
     - op: add
       path: /spec/template/spec/containers/0/env/-
@@ -71,7 +69,6 @@ patches:
     kind: Deployment
     name: argocd-repo-server
     version: v1
-
 - path: aws-secrets.yaml
   target:
     group: apps
