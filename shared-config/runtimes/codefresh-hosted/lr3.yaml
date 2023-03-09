@@ -10,7 +10,7 @@ metadata:
 spec:
   destination:
     namespace: default
-    server: https://9EFB8399DE9A817EC221411CDCB1620C.gr7.us-east-1.eks.amazonaws.com
+    server: https://A7F0B51A0AA159E93D55D2A438A7052D.gr7.us-east-1.eks.amazonaws.com
   project: default
   source:
     directory:
