@@ -1,0 +1,16 @@
+{
+  "appName": "infrastructure",
+  "userGivenName": "infrastructure",
+  "destNamespace": "csdp",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": ".",
+  "srcRepoURL": "https://github.com/lrochette/csdp_infra.git",
+  "srcTargetRevision": "",
+  "labels": {
+    "codefresh_io_entity": "git-source",
+    "codefresh_io_internal": "false"
+  },
+  "annotations": null,
+  "exclude": "",
+  "include": ""
+}
