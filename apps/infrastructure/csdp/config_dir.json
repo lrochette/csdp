@@ -3,7 +3,7 @@
   "userGivenName": "infrastructure",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": ".",
+  "srcPath": "resources",
   "srcRepoURL": "https://github.com/lrochette/csdp_infra.git",
   "srcTargetRevision": "",
   "labels": {
