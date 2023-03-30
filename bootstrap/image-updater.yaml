@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: image-updater
+  name: image-updater
+  namespace: csdp
+spec:
+  destination:
+    namespace: csdp
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: manifests/base
+    repoURL: https://github.com/argoproj-labs/argocd-image-updater
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - allowEmpty=true
