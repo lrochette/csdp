@@ -2,9 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   creationTimestamp: null
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
   labels:
     app.kubernetes.io/name: image-updater
     codefresh.io/internal: "true"
+    codefresh.io/entity: component
   name: image-updater
   namespace: csdp
 spec:
