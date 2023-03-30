@@ -4,6 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app.kubernetes.io/name: image-updater
+    codefresh.io/internal: "true"
   name: image-updater
   namespace: csdp
 spec:
