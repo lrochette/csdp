@@ -1,0 +1,16 @@
+{
+  "appName": "image-updater",
+  "userGivenName": "image-updater",
+  "destNamespace": "csdp",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "apps/image-updater/overlays/csdp",
+  "srcRepoURL": "https://github.com/lrochette/csdp.git",
+  "srcTargetRevision": "",
+  "labels": {
+    "codefresh_io_entity": "component",
+    "codefresh_io_internal": "true"
+  },
+  "annotations": {
+    "argocd_argoproj_io_sync-wave": "1"
+  }
+}
