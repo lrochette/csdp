@@ -15,25 +15,25 @@ data:
       components:
       - name: events
         type: kustomize
-        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-events?ref=0.1.27
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-events?ref=0.1.29
         wait: true
       - name: rollouts
         type: kustomize
-        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-rollouts?ref=0.1.27
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-rollouts?ref=0.1.29
       - name: workflows
         type: kustomize
-        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-workflows?ref=0.1.27
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/argo-workflows?ref=0.1.29
       - name: app-proxy
         syncWave: 9
         type: kustomize
-        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/app-proxy?ref=0.1.27
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/app-proxy?ref=0.1.29
       - name: internal-router
         syncWave: 10
         type: kustomize
-        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/internal-router?ref=0.1.27
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/internal-router?ref=0.1.29
       - name: sealed-secrets
         type: kustomize
-        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/sealed-secrets?ref=0.1.27
+        url: github.com/codefresh-io/csdp-official/csdp/hybrid/basic/apps/sealed-secrets?ref=0.1.29
       defVersion: null
       ingressClassName: nginx
       ingressController: k8s.io/ingress-nginx
@@ -41,7 +41,7 @@ data:
       ref: ""
       repo: https://github.com/lrochette/csdp.git
       requiredCLIVersion: ^0.1.0
-      version: 0.1.27
+      version: 0.1.29
 kind: ConfigMap
 metadata:
   creationTimestamp: null
