@@ -15,7 +15,7 @@ spec:
   source:
     directory:
       include: >-
-        {all-runtimes-all-clusters/*.yaml,all-runtimes-all-clusters/**/*.yaml,runtimes/gke-csdp/*.yaml,runtimes/gke-csdp/**/*.yaml,control-planes/*.yaml,control-planes/**/*.yaml}
+        {all-runtimes-all-clusters/*.yaml,all-runtimes-all-clusters/**/*.yaml,runtimes/gke-csdp/*.yaml,runtimes/gke-csdp/**/*.yaml,control-planes/*.yaml,control-planes/**/*.yaml,gke-csdp/gke-apps.yaml}
       recurse: true
     path: shared-config/resources
     repoURL: https://github.com/lrochette/csdp.git
