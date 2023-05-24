@@ -3,7 +3,7 @@
   "userGivenName": "isc",
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
-  "srcPath": "shared-config/runtimes/csdp",
+  "srcPath": "./runtimes/csdp",
   "srcRepoURL": "https://github.com/lrochette/ISC.git",
   "srcTargetRevision": "",
   "labels": {
