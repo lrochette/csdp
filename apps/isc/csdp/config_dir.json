@@ -4,7 +4,7 @@
   "destNamespace": "csdp",
   "destServer": "https://kubernetes.default.svc",
   "srcPath": "shared-config/runtimes/csdp",
-  "srcRepoURL": "https://github.com/lrochette/csdp.git",
+  "srcRepoURL": "https://github.com/lrochette/ISC.git",
   "srcTargetRevision": "",
   "labels": {
     "codefresh_io_entity": "shared-configuration",
